@@ -62,4 +62,4 @@ done
 echo "FAIL TIME $hls_fail"
 echo "SUCCESS TIME $hls_success"
 echo "CRASH TIME $hls_crash"
-echo "END fuzzing:";
+echo "END fuzzing HLS!";
