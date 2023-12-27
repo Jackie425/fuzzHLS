@@ -1,4 +1,4 @@
-total_num=1000
+total_num=$1
 hls_success=0
 hls_fail=0
 hls_crash=0
@@ -47,7 +47,7 @@ do
     ((hls_fail++))
     echo "******************************Co-sim FAIL********************************";
     cp fuzzHLS.c ../fail_hls/$i.c
-    exit
+    #exit
   else 
     ((hls_crash++))
     echo "******************************HLS synth CRASH********************************";
