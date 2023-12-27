@@ -3,7 +3,7 @@
 #include <stdint.h>
 
 int main (void) {
-  int32_t res;
+  int res;
   char *check_file;
   char *cosim_result_file;
   check_file = "/home/jackie/RISC-V_Research/fuzzHLS/build/check.data";
@@ -27,7 +27,9 @@ int main (void) {
 
   char dut[100];
 
-  res = result();
+  res = hls_top();
+
+  printf("%X", res);
   sprintf(dut, "checksum = %X\n", res);
   FILE *file1 = fopen(cosim_result_file, "wr");
   if(file == NULL) {
@@ -43,5 +45,5 @@ int main (void) {
     printf("dut: %s\n",dut);
 	 return 1;
   }
-
+  return 1;
 }

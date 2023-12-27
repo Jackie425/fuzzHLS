@@ -29,7 +29,7 @@ do
     timeout=0
   fi
   sed -i 's/return 0;/return (crc32_context ^ 0xFFFFFFFFUL);/g' $fuzz_c
-  sed -i 's/int main (void)/int result(void)/g' $fuzz_c
+  sed -i 's/int main (void)/int hls_top(void)/g' $fuzz_c
   sed -i '/platform_main_end(crc32_context ^ 0xFFFFFFFFUL, print_hash_value);/d' $fuzz_c
   echo "******************************Enter Vivado********************************";
   timeout 300 vivado_hls ../hls.tcl 
@@ -55,7 +55,7 @@ do
   sleep 5
   timeout=0
   > cosim_result.data
-  > check_data
+  > check.data
   echo "******************************Finish $i Iteration*******************************";
 done
 
