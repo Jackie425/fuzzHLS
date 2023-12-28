@@ -26,7 +26,6 @@ do
   if [ $? -eq 124 ]; then
     timeout=1
     echo "******************************time out********************************";
-    exit
   else 
     timeout=0
   fi
