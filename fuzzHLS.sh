@@ -8,8 +8,8 @@ fuzz="fuzzHLS"
 
 ref_out="check.data"
 
-mkdir -p build 
-mkdir -p fail_hls 
+mkdir -p build
+mkdir -p fail_hls
 cd build/
 
 touch ./cosim_result.data
