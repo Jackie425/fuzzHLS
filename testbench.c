@@ -29,7 +29,7 @@ int main (void) {
 
   res = hls_top();
 
-  sprintf(dut, "checksum = %X\n", res);
+  sprintf(dut, "%X\n", res);
   FILE *file1 = fopen(cosim_result_file, "wr");
   if(file == NULL) {
 	  printf("Failed to open file\n");
