@@ -10,6 +10,7 @@ ref_out="check.data"
 
 mkdir -p build
 mkdir -p fail_hls
+mkdir -p success_hls
 cd build/
 
 touch ./cosim_result.data
@@ -25,6 +26,7 @@ do
   if [ $? -eq 124 ]; then
     timeout=1
     echo "******************************time out********************************";
+    exit
   else 
     timeout=0
   fi
@@ -42,6 +44,7 @@ do
   sleep 5
   if grep -q "Cosim SUCCESS" cosim_result.data; then
     ((hls_success++))
+    cp fuzzHLS.c ../success_hls/$i.c
     echo "******************************Co-sim PASS********************************";
   elif grep -q "Cosim FAIL" cosim_result.data && [ $timeout = 0 ]; then
     ((hls_fail++))

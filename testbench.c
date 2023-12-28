@@ -29,7 +29,6 @@ int main (void) {
 
   res = hls_top();
 
-  printf("%X", res);
   sprintf(dut, "checksum = %X\n", res);
   FILE *file1 = fopen(cosim_result_file, "wr");
   if(file == NULL) {
