@@ -1,0 +1,328 @@
+
+
+================================================================
+== Vivado HLS Report for 'hls_top'
+================================================================
+* Date:           Tue Jan  2 17:13:54 2024
+
+* Version:        2019.1 (Build 2552052 on Fri May 24 15:28:33 MDT 2019)
+* Project:        fuzzHLS_syn
+* Solution:       solution
+* Product family: zynquplus
+* Target device:  xczu19eg-ffvc1760-2-i
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|     2.943|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+---------+
+    |  Latency  |  Interval | Pipeline|
+    | min | max | min | max |   Type  |
+    +-----+-----+-----+-----+---------+
+    |    ?|    ?|    ?|    ?|   none  |
+    +-----+-----+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-------------+------+------+----------+-----------+-----------+------+----------+
+        |             |   Latency   | Iteration|  Initiation Interval  | Trip |          |
+        |  Loop Name  |  min |  max |  Latency |  achieved |   target  | Count| Pipelined|
+        +-------------+------+------+----------+-----------+-----------+------+----------+
+        |- Loop 1     |  2560|  2560|        10|          -|          -|   256|    no    |
+        | + Loop 1.1  |     8|     8|         1|          -|          -|     8|    no    |
+        |- Loop 2     |     ?|     ?|         ?|          -|          -|     2|    no    |
+        | + Loop 2.1  |     ?|     ?|         2|          -|          -|     ?|    no    |
+        |- Loop 3     |    88|    88|        11|          -|          -|     8|    no    |
+        +-------------+------+------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 16
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 4 
+3 --> 3 2 
+4 --> 5 8 
+5 --> 6 
+6 --> 7 
+7 --> 6 4 
+8 --> 9 
+9 --> 10 
+10 --> 11 
+11 --> 12 
+12 --> 13 15 
+13 --> 14 
+14 --> 12 
+15 --> 16 
+16 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 0.65>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i32 0) nounwind, !map !66"   --->   Operation 17 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecTopModule([8 x i8]* @hls_top_str) nounwind"   --->   Operation 18 'spectopmodule' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 19 [1/1] (0.65ns)   --->   "br label %1" [/home/jackie/csmith/include/csmith.h:57->fuzzHLS.c:239]   --->   Operation 19 'br' <Predicate = true> <Delay = 0.65>
+
+State 2 <SV = 1> <Delay = 2.01>
+ST_2 : Operation 20 [1/1] (0.00ns)   --->   "%crc = phi i9 [ 0, %0 ], [ %i_1, %3 ]"   --->   Operation 20 'phi' 'crc' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 21 [1/1] (0.00ns)   --->   "%zext_ln58 = zext i9 %crc to i32" [/home/jackie/csmith/include/csmith.h:58->fuzzHLS.c:239]   --->   Operation 21 'zext' 'zext_ln58' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 22 [1/1] (0.88ns)   --->   "%icmp_ln57 = icmp eq i9 %crc, -256" [/home/jackie/csmith/include/csmith.h:57->fuzzHLS.c:239]   --->   Operation 22 'icmp' 'icmp_ln57' <Predicate = true> <Delay = 0.88> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.72> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 23 [1/1] (0.00ns)   --->   "%empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 256, i64 256, i64 256) nounwind"   --->   Operation 23 'speclooptripcount' 'empty' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 24 [1/1] (0.77ns)   --->   "%i_1 = add i9 %crc, 1" [/home/jackie/csmith/include/csmith.h:57->fuzzHLS.c:239]   --->   Operation 24 'add' 'i_1' <Predicate = true> <Delay = 0.77> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.01> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 25 [1/1] (0.00ns)   --->   "br i1 %icmp_ln57, label %crc32_gentab.exit.preheader, label %.preheader.i.preheader" [/home/jackie/csmith/include/csmith.h:57->fuzzHLS.c:239]   --->   Operation 25 'br' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 26 [1/1] (0.65ns)   --->   "br label %.preheader.i" [/home/jackie/csmith/include/csmith.h:59->fuzzHLS.c:239]   --->   Operation 26 'br' <Predicate = (!icmp_ln57)> <Delay = 0.65>
+ST_2 : Operation 27 [1/1] (0.00ns)   --->   "%l_18_1 = alloca i32"   --->   Operation 27 'alloca' 'l_18_1' <Predicate = (icmp_ln57)> <Delay = 0.00>
+ST_2 : Operation 28 [1/1] (0.00ns)   --->   "%g_6_load = load i32* @g_6, align 4" [fuzzHLS.c:103->fuzzHLS.c:51->fuzzHLS.c:240]   --->   Operation 28 'load' 'g_6_load' <Predicate = (icmp_ln57)> <Delay = 0.00>
+ST_2 : Operation 29 [1/1] (0.00ns)   --->   "%trunc_ln937 = trunc i32 %g_6_load to i31" [/home/jackie/csmith/include/safe_math.h:937->fuzzHLS.c:51->fuzzHLS.c:240]   --->   Operation 29 'trunc' 'trunc_ln937' <Predicate = (icmp_ln57)> <Delay = 0.00>
+ST_2 : Operation 30 [1/1] (0.00ns)   --->   "%trunc_ln2 = call i26 @_ssdm_op_PartSelect.i26.i32.i32.i32(i32 %g_6_load, i32 5, i32 30)" [fuzzHLS.c:49->fuzzHLS.c:240]   --->   Operation 30 'partselect' 'trunc_ln2' <Predicate = (icmp_ln57)> <Delay = 0.00>
+ST_2 : Operation 31 [1/1] (1.00ns)   --->   "%add_ln49 = add i31 1, %trunc_ln937" [fuzzHLS.c:49->fuzzHLS.c:240]   --->   Operation 31 'add' 'add_ln49' <Predicate = (icmp_ln57)> <Delay = 1.00> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.01> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 32 [1/1] (0.00ns)   --->   "%tmp = call i30 @_ssdm_op_PartSelect.i30.i31.i32.i32(i31 %add_ln49, i32 1, i32 30)" [fuzzHLS.c:49->fuzzHLS.c:240]   --->   Operation 32 'partselect' 'tmp' <Predicate = (icmp_ln57)> <Delay = 0.00>
+ST_2 : Operation 33 [1/1] (1.00ns)   --->   "%icmp_ln49 = icmp eq i30 %tmp, 0" [fuzzHLS.c:49->fuzzHLS.c:240]   --->   Operation 33 'icmp' 'icmp_ln49' <Predicate = (icmp_ln57)> <Delay = 1.00> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.72> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 34 [1/1] (0.65ns)   --->   "store i32 642617928, i32* %l_18_1" [fuzzHLS.c:44->fuzzHLS.c:240]   --->   Operation 34 'store' <Predicate = (icmp_ln57)> <Delay = 0.65>
+ST_2 : Operation 35 [1/1] (0.65ns)   --->   "br label %crc32_gentab.exit" [fuzzHLS.c:44->fuzzHLS.c:240]   --->   Operation 35 'br' <Predicate = (icmp_ln57)> <Delay = 0.65>
+
+State 3 <SV = 2> <Delay = 1.23>
+ST_3 : Operation 36 [1/1] (0.00ns)   --->   "%j_0_i = phi i4 [ %j, %2 ], [ -8, %.preheader.i.preheader ]"   --->   Operation 36 'phi' 'j_0_i' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 37 [1/1] (0.00ns)   --->   "%crc_0_i = phi i32 [ %crc_4, %2 ], [ %zext_ln58, %.preheader.i.preheader ]"   --->   Operation 37 'phi' 'crc_0_i' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 38 [1/1] (0.72ns)   --->   "%icmp_ln59 = icmp eq i4 %j_0_i, 0" [/home/jackie/csmith/include/csmith.h:59->fuzzHLS.c:239]   --->   Operation 38 'icmp' 'icmp_ln59' <Predicate = true> <Delay = 0.72> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.72> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 39 [1/1] (0.00ns)   --->   "%empty_7 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 8, i64 8, i64 8) nounwind"   --->   Operation 39 'speclooptripcount' 'empty_7' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 40 [1/1] (0.00ns)   --->   "br i1 %icmp_ln59, label %3, label %2" [/home/jackie/csmith/include/csmith.h:59->fuzzHLS.c:239]   --->   Operation 40 'br' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 41 [1/1] (0.00ns)   --->   "%crc_1 = call i31 @_ssdm_op_PartSelect.i31.i32.i32.i32(i32 %crc_0_i, i32 1, i32 31)" [/home/jackie/csmith/include/csmith.h:63->fuzzHLS.c:239]   --->   Operation 41 'partselect' 'crc_1' <Predicate = (!icmp_ln59)> <Delay = 0.00>
+ST_3 : Operation 42 [1/1] (0.00ns)   --->   "%crc_2 = zext i31 %crc_1 to i32" [/home/jackie/csmith/include/csmith.h:63->fuzzHLS.c:239]   --->   Operation 42 'zext' 'crc_2' <Predicate = (!icmp_ln59)> <Delay = 0.00>
+ST_3 : Operation 43 [1/1] (0.00ns) (grouped into LUT with out node crc_4)   --->   "%crc_3 = xor i32 %crc_2, -306674912" [/home/jackie/csmith/include/csmith.h:61->fuzzHLS.c:239]   --->   Operation 43 'xor' 'crc_3' <Predicate = (!icmp_ln59)> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.35> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 44 [1/1] (0.00ns) (grouped into LUT with out node crc_4)   --->   "%trunc_ln59 = trunc i32 %crc_0_i to i1" [/home/jackie/csmith/include/csmith.h:59->fuzzHLS.c:239]   --->   Operation 44 'trunc' 'trunc_ln59' <Predicate = (!icmp_ln59)> <Delay = 0.00>
+ST_3 : Operation 45 [1/1] (0.44ns) (out node of the LUT)   --->   "%crc_4 = select i1 %trunc_ln59, i32 %crc_3, i32 %crc_2" [/home/jackie/csmith/include/csmith.h:60->fuzzHLS.c:239]   --->   Operation 45 'select' 'crc_4' <Predicate = (!icmp_ln59)> <Delay = 0.44> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.44> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 46 [1/1] (0.79ns)   --->   "%j = add i4 -1, %j_0_i" [/home/jackie/csmith/include/csmith.h:59->fuzzHLS.c:239]   --->   Operation 46 'add' 'j' <Predicate = (!icmp_ln59)> <Delay = 0.79> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.01> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 47 [1/1] (0.00ns)   --->   "br label %.preheader.i" [/home/jackie/csmith/include/csmith.h:59->fuzzHLS.c:239]   --->   Operation 47 'br' <Predicate = (!icmp_ln59)> <Delay = 0.00>
+ST_3 : Operation 48 [1/1] (0.00ns)   --->   "%zext_ln66 = zext i9 %crc to i64" [/home/jackie/csmith/include/csmith.h:66->fuzzHLS.c:239]   --->   Operation 48 'zext' 'zext_ln66' <Predicate = (icmp_ln59)> <Delay = 0.00>
+ST_3 : Operation 49 [1/1] (0.00ns)   --->   "%crc32_tab_addr = getelementptr inbounds [256 x i32]* @crc32_tab, i64 0, i64 %zext_ln66" [/home/jackie/csmith/include/csmith.h:66->fuzzHLS.c:239]   --->   Operation 49 'getelementptr' 'crc32_tab_addr' <Predicate = (icmp_ln59)> <Delay = 0.00>
+ST_3 : Operation 50 [1/1] (1.23ns)   --->   "store i32 %crc_0_i, i32* %crc32_tab_addr, align 4" [/home/jackie/csmith/include/csmith.h:66->fuzzHLS.c:239]   --->   Operation 50 'store' <Predicate = (icmp_ln59)> <Delay = 1.23> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.67> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 8> <RAM>
+ST_3 : Operation 51 [1/1] (0.00ns)   --->   "br label %1" [/home/jackie/csmith/include/csmith.h:57->fuzzHLS.c:239]   --->   Operation 51 'br' <Predicate = (icmp_ln59)> <Delay = 0.00>
+
+State 4 <SV = 2> <Delay = 1.03>
+ST_4 : Operation 52 [1/1] (0.00ns)   --->   "%storemerge_i = phi i2 [ %add_ln44, %5 ], [ 1, %crc32_gentab.exit.preheader ]" [fuzzHLS.c:44->fuzzHLS.c:240]   --->   Operation 52 'phi' 'storemerge_i' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 53 [1/1] (0.00ns)   --->   "%tmp_1 = call i1 @_ssdm_op_BitSelect.i1.i2.i32(i2 %storemerge_i, i32 1)" [fuzzHLS.c:44->fuzzHLS.c:240]   --->   Operation 53 'bitselect' 'tmp_1' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 54 [1/1] (0.00ns)   --->   "%empty_8 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 2, i64 2, i64 2) nounwind"   --->   Operation 54 'speclooptripcount' 'empty_8' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 55 [1/1] (0.00ns)   --->   "br i1 %tmp_1, label %func_1.exit, label %.critedge" [fuzzHLS.c:44->fuzzHLS.c:240]   --->   Operation 55 'br' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 56 [1/1] (0.00ns)   --->   "%g_3_load_1 = load volatile i32* @g_3, align 4" [fuzzHLS.c:47->fuzzHLS.c:240]   --->   Operation 56 'load' 'g_3_load_1' <Predicate = (!tmp_1)> <Delay = 0.00>
+ST_4 : Operation 57 [1/1] (0.65ns)   --->   "store volatile i32 %g_3_load_1, i32* @g_3, align 4" [fuzzHLS.c:47->fuzzHLS.c:240]   --->   Operation 57 'store' <Predicate = (!tmp_1)> <Delay = 0.65>
+ST_4 : Operation 58 [1/1] (0.00ns)   --->   "%zext_ln51 = zext i2 %storemerge_i to i26" [fuzzHLS.c:51->fuzzHLS.c:240]   --->   Operation 58 'zext' 'zext_ln51' <Predicate = (!tmp_1)> <Delay = 0.00>
+ST_4 : Operation 59 [1/1] (1.03ns)   --->   "%icmp_ln51 = icmp ult i26 %trunc_ln2, %zext_ln51" [fuzzHLS.c:51->fuzzHLS.c:240]   --->   Operation 59 'icmp' 'icmp_ln51' <Predicate = (!tmp_1)> <Delay = 1.03> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.72> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 60 [1/1] (0.00ns)   --->   "%l_18_1_load = load i32* %l_18_1" [fuzzHLS.c:56->fuzzHLS.c:240]   --->   Operation 60 'load' 'l_18_1_load' <Predicate = (tmp_1)> <Delay = 0.00>
+ST_4 : Operation 61 [1/1] (0.65ns)   --->   "store volatile i32 %l_18_1_load, i32* @g_3, align 4" [fuzzHLS.c:56->fuzzHLS.c:240]   --->   Operation 61 'store' <Predicate = (tmp_1)> <Delay = 0.65>
+ST_4 : Operation 62 [1/1] (0.00ns)   --->   "store i32 0, i32* @g_6, align 4" [fuzzHLS.c:57->fuzzHLS.c:240]   --->   Operation 62 'store' <Predicate = (tmp_1)> <Delay = 0.00>
+
+State 5 <SV = 3> <Delay = 1.67>
+ST_5 : Operation 63 [1/1] (0.00ns)   --->   "%g_3_load_2 = load volatile i32* @g_3, align 4" [fuzzHLS.c:48->fuzzHLS.c:240]   --->   Operation 63 'load' 'g_3_load_2' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 64 [1/1] (0.00ns)   --->   "%checksum_hercules_lo = load i32* @checksum_hercules, align 4" [fuzzHLS.c:48->fuzzHLS.c:240]   --->   Operation 64 'load' 'checksum_hercules_lo' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 65 [1/1] (1.01ns)   --->   "%add_ln48 = add nsw i32 %checksum_hercules_lo, %g_3_load_2" [fuzzHLS.c:48->fuzzHLS.c:240]   --->   Operation 65 'add' 'add_ln48' <Predicate = true> <Delay = 1.01> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.01> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 66 [1/1] (0.65ns)   --->   "store i32 %add_ln48, i32* @checksum_hercules, align 4" [fuzzHLS.c:48->fuzzHLS.c:240]   --->   Operation 66 'store' <Predicate = true> <Delay = 0.65>
+ST_5 : Operation 67 [1/1] (0.00ns)   --->   "%l_18 = zext i1 %icmp_ln51 to i32" [fuzzHLS.c:51->fuzzHLS.c:240]   --->   Operation 67 'zext' 'l_18' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 68 [1/1] (0.00ns)   --->   "br label %4"   --->   Operation 68 'br' <Predicate = true> <Delay = 0.00>
+
+State 6 <SV = 4> <Delay = 1.67>
+ST_6 : Operation 69 [2/2] (0.67ns)   --->   "%empty_9 = load volatile i32* getelementptr inbounds ([8 x i32]* @g_5, i64 0, i64 3), align 4" [fuzzHLS.c:51->fuzzHLS.c:240]   --->   Operation 69 'load' 'empty_9' <Predicate = true> <Delay = 0.67> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.67> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 8> <RAM>
+ST_6 : Operation 70 [1/1] (0.00ns)   --->   "%checksum_hercules_lo_1 = load i32* @checksum_hercules, align 4" [fuzzHLS.c:52->fuzzHLS.c:240]   --->   Operation 70 'load' 'checksum_hercules_lo_1' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 71 [1/1] (1.01ns)   --->   "%add_ln52 = add nsw i32 %checksum_hercules_lo_1, %l_18" [fuzzHLS.c:52->fuzzHLS.c:240]   --->   Operation 71 'add' 'add_ln52' <Predicate = true> <Delay = 1.01> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.01> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 72 [1/1] (0.65ns)   --->   "store i32 %add_ln52, i32* @checksum_hercules, align 4" [fuzzHLS.c:52->fuzzHLS.c:240]   --->   Operation 72 'store' <Predicate = true> <Delay = 0.65>
+ST_6 : Operation 73 [1/1] (0.65ns)   --->   "store i32 %l_18, i32* %l_18_1" [fuzzHLS.c:49->fuzzHLS.c:240]   --->   Operation 73 'store' <Predicate = true> <Delay = 0.65>
+
+State 7 <SV = 5> <Delay = 0.67>
+ST_7 : Operation 74 [1/2] (0.67ns)   --->   "%empty_9 = load volatile i32* getelementptr inbounds ([8 x i32]* @g_5, i64 0, i64 3), align 4" [fuzzHLS.c:51->fuzzHLS.c:240]   --->   Operation 74 'load' 'empty_9' <Predicate = true> <Delay = 0.67> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.67> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 8> <RAM>
+ST_7 : Operation 75 [1/1] (0.00ns)   --->   "br i1 %icmp_ln49, label %4, label %5" [fuzzHLS.c:49->fuzzHLS.c:240]   --->   Operation 75 'br' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 76 [1/1] (0.54ns)   --->   "%add_ln44 = add i2 %storemerge_i, -1" [fuzzHLS.c:44->fuzzHLS.c:240]   --->   Operation 76 'add' 'add_ln44' <Predicate = (!icmp_ln49)> <Delay = 0.54> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.01> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_7 : Operation 77 [1/1] (0.00ns)   --->   "br label %crc32_gentab.exit" [fuzzHLS.c:44->fuzzHLS.c:240]   --->   Operation 77 'br' <Predicate = (!icmp_ln49)> <Delay = 0.00>
+
+State 8 <SV = 3> <Delay = 2.26>
+ST_8 : Operation 78 [1/1] (0.00ns)   --->   "%g_3_load = load volatile i32* @g_3, align 4" [fuzzHLS.c:241]   --->   Operation 78 'load' 'g_3_load' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 79 [2/2] (2.26ns)   --->   "call fastcc void @transparent_crc(i32 %g_3_load)" [fuzzHLS.c:241]   --->   Operation 79 'call' <Predicate = true> <Delay = 2.26> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 9 <SV = 4> <Delay = 0.00>
+ST_9 : Operation 80 [1/2] (0.00ns)   --->   "call fastcc void @transparent_crc(i32 %g_3_load)" [fuzzHLS.c:241]   --->   Operation 80 'call' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 10 <SV = 5> <Delay = 2.26>
+ST_10 : Operation 81 [2/2] (2.26ns)   --->   "call fastcc void @transparent_crc(i32 -1)" [fuzzHLS.c:242]   --->   Operation 81 'call' <Predicate = true> <Delay = 2.26> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 11 <SV = 6> <Delay = 0.65>
+ST_11 : Operation 82 [1/2] (0.00ns)   --->   "call fastcc void @transparent_crc(i32 -1)" [fuzzHLS.c:242]   --->   Operation 82 'call' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_11 : Operation 83 [1/1] (0.65ns)   --->   "br label %6" [fuzzHLS.c:243]   --->   Operation 83 'br' <Predicate = true> <Delay = 0.65>
+
+State 12 <SV = 7> <Delay = 2.26>
+ST_12 : Operation 84 [1/1] (0.00ns)   --->   "%i_0 = phi i4 [ 0, %func_1.exit ], [ %i, %7 ]"   --->   Operation 84 'phi' 'i_0' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 85 [1/1] (0.72ns)   --->   "%icmp_ln243 = icmp eq i4 %i_0, -8" [fuzzHLS.c:243]   --->   Operation 85 'icmp' 'icmp_ln243' <Predicate = true> <Delay = 0.72> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.72> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 86 [1/1] (0.00ns)   --->   "%empty_10 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 8, i64 8, i64 8) nounwind"   --->   Operation 86 'speclooptripcount' 'empty_10' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 87 [1/1] (0.79ns)   --->   "%i = add i4 %i_0, 1" [fuzzHLS.c:243]   --->   Operation 87 'add' 'i' <Predicate = true> <Delay = 0.79> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.01> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 88 [1/1] (0.00ns)   --->   "br i1 %icmp_ln243, label %8, label %7" [fuzzHLS.c:243]   --->   Operation 88 'br' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 89 [1/1] (0.00ns)   --->   "%zext_ln245 = zext i4 %i_0 to i64" [fuzzHLS.c:245]   --->   Operation 89 'zext' 'zext_ln245' <Predicate = (!icmp_ln243)> <Delay = 0.00>
+ST_12 : Operation 90 [1/1] (0.00ns)   --->   "%g_5_addr = getelementptr inbounds [8 x i32]* @g_5, i64 0, i64 %zext_ln245" [fuzzHLS.c:245]   --->   Operation 90 'getelementptr' 'g_5_addr' <Predicate = (!icmp_ln243)> <Delay = 0.00>
+ST_12 : Operation 91 [2/2] (0.67ns)   --->   "%g_5_load = load volatile i32* %g_5_addr, align 4" [fuzzHLS.c:245]   --->   Operation 91 'load' 'g_5_load' <Predicate = (!icmp_ln243)> <Delay = 0.67> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.67> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 8> <RAM>
+ST_12 : Operation 92 [2/2] (2.26ns)   --->   "call fastcc void @transparent_crc(i32 0)" [fuzzHLS.c:249]   --->   Operation 92 'call' <Predicate = (icmp_ln243)> <Delay = 2.26> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 13 <SV = 8> <Delay = 2.94>
+ST_13 : Operation 93 [1/2] (0.67ns)   --->   "%g_5_load = load volatile i32* %g_5_addr, align 4" [fuzzHLS.c:245]   --->   Operation 93 'load' 'g_5_load' <Predicate = true> <Delay = 0.67> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.67> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 8> <RAM>
+ST_13 : Operation 94 [2/2] (2.26ns)   --->   "call fastcc void @transparent_crc(i32 %g_5_load)" [fuzzHLS.c:245]   --->   Operation 94 'call' <Predicate = true> <Delay = 2.26> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 14 <SV = 9> <Delay = 0.00>
+ST_14 : Operation 95 [1/2] (0.00ns)   --->   "call fastcc void @transparent_crc(i32 %g_5_load)" [fuzzHLS.c:245]   --->   Operation 95 'call' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_14 : Operation 96 [1/1] (0.00ns)   --->   "br label %6" [fuzzHLS.c:243]   --->   Operation 96 'br' <Predicate = true> <Delay = 0.00>
+
+State 15 <SV = 8> <Delay = 0.00>
+ST_15 : Operation 97 [1/2] (0.00ns)   --->   "call fastcc void @transparent_crc(i32 0)" [fuzzHLS.c:249]   --->   Operation 97 'call' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 16 <SV = 9> <Delay = 1.01>
+ST_16 : Operation 98 [1/1] (0.00ns)   --->   "%crc32_context_load = load i32* @crc32_context, align 4" [fuzzHLS.c:250]   --->   Operation 98 'load' 'crc32_context_load' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 99 [1/1] (0.00ns) (grouped into LUT with out node add_ln250)   --->   "%xor_ln250 = xor i32 %crc32_context_load, -1" [fuzzHLS.c:250]   --->   Operation 99 'xor' 'xor_ln250' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.35> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_16 : Operation 100 [1/1] (0.00ns)   --->   "%checksum_hercules_lo_2 = load i32* @checksum_hercules, align 4" [fuzzHLS.c:250]   --->   Operation 100 'load' 'checksum_hercules_lo_2' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 101 [1/1] (1.01ns) (out node of the LUT)   --->   "%add_ln250 = add i32 %checksum_hercules_lo_2, %xor_ln250" [fuzzHLS.c:250]   --->   Operation 101 'add' 'add_ln250' <Predicate = true> <Delay = 1.01> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.01> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_16 : Operation 102 [1/1] (0.00ns)   --->   "ret i32 %add_ln250" [fuzzHLS.c:250]   --->   Operation 102 'ret' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ <State 1>: 0.656ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('i') with incoming values : ('i', /home/jackie/csmith/include/csmith.h:57->fuzzHLS.c:239) [11]  (0.656 ns)
+
+ <State 2>: 2.01ns
+The critical path consists of the following:
+	'load' operation ('g_6_load', fuzzHLS.c:103->fuzzHLS.c:51->fuzzHLS.c:240) on static variable 'g_6' [40]  (0 ns)
+	'add' operation ('add_ln49', fuzzHLS.c:49->fuzzHLS.c:240) [43]  (1.01 ns)
+	'icmp' operation ('icmp_ln49', fuzzHLS.c:49->fuzzHLS.c:240) [45]  (1 ns)
+
+ <State 3>: 1.24ns
+The critical path consists of the following:
+	'phi' operation ('crc') with incoming values : ('zext_ln58', /home/jackie/csmith/include/csmith.h:58->fuzzHLS.c:239) ('crc', /home/jackie/csmith/include/csmith.h:60->fuzzHLS.c:239) [21]  (0 ns)
+	'store' operation ('store_ln66', /home/jackie/csmith/include/csmith.h:66->fuzzHLS.c:239) of variable 'crc' on array 'crc32_tab' [36]  (1.24 ns)
+
+ <State 4>: 1.03ns
+The critical path consists of the following:
+	'phi' operation ('storemerge_i', fuzzHLS.c:44->fuzzHLS.c:240) with incoming values : ('add_ln44', fuzzHLS.c:44->fuzzHLS.c:240) [49]  (0 ns)
+	'icmp' operation ('icmp_ln51', fuzzHLS.c:51->fuzzHLS.c:240) [61]  (1.03 ns)
+
+ <State 5>: 1.67ns
+The critical path consists of the following:
+	'load' operation ('g_3_load_2', fuzzHLS.c:48->fuzzHLS.c:240) on static variable 'g_3' [56]  (0 ns)
+	'add' operation ('add_ln48', fuzzHLS.c:48->fuzzHLS.c:240) [58]  (1.02 ns)
+	'store' operation ('store_ln48', fuzzHLS.c:48->fuzzHLS.c:240) of variable 'add_ln48', fuzzHLS.c:48->fuzzHLS.c:240 on static variable 'checksum_hercules' [59]  (0.656 ns)
+
+ <State 6>: 1.67ns
+The critical path consists of the following:
+	'load' operation ('checksum_hercules_lo_1', fuzzHLS.c:52->fuzzHLS.c:240) on static variable 'checksum_hercules' [66]  (0 ns)
+	'add' operation ('add_ln52', fuzzHLS.c:52->fuzzHLS.c:240) [67]  (1.02 ns)
+	'store' operation ('store_ln52', fuzzHLS.c:52->fuzzHLS.c:240) of variable 'add_ln52', fuzzHLS.c:52->fuzzHLS.c:240 on static variable 'checksum_hercules' [68]  (0.656 ns)
+
+ <State 7>: 0.677ns
+The critical path consists of the following:
+	'load' operation ('empty_9', fuzzHLS.c:51->fuzzHLS.c:240) on array 'g_5' [65]  (0.677 ns)
+
+ <State 8>: 2.27ns
+The critical path consists of the following:
+	'load' operation ('g_3_load', fuzzHLS.c:241) on static variable 'g_3' [78]  (0 ns)
+	'call' operation ('call_ln241', fuzzHLS.c:241) to 'transparent_crc' [79]  (2.27 ns)
+
+ <State 9>: 0ns
+The critical path consists of the following:
+
+ <State 10>: 2.27ns
+The critical path consists of the following:
+	'call' operation ('call_ln242', fuzzHLS.c:242) to 'transparent_crc' [80]  (2.27 ns)
+
+ <State 11>: 0.656ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('i') with incoming values : ('i', fuzzHLS.c:243) [83]  (0.656 ns)
+
+ <State 12>: 2.27ns
+The critical path consists of the following:
+	'call' operation ('call_ln249', fuzzHLS.c:249) to 'transparent_crc' [95]  (2.27 ns)
+
+ <State 13>: 2.94ns
+The critical path consists of the following:
+	'load' operation ('g_5_load', fuzzHLS.c:245) on array 'g_5' [91]  (0.677 ns)
+	'call' operation ('call_ln245', fuzzHLS.c:245) to 'transparent_crc' [92]  (2.27 ns)
+
+ <State 14>: 0ns
+The critical path consists of the following:
+
+ <State 15>: 0ns
+The critical path consists of the following:
+
+ <State 16>: 1.02ns
+The critical path consists of the following:
+	'load' operation ('crc32_context_load', fuzzHLS.c:250) on static variable 'crc32_context' [96]  (0 ns)
+	'xor' operation ('xor_ln250', fuzzHLS.c:250) [97]  (0 ns)
+	'add' operation ('add_ln250', fuzzHLS.c:250) [99]  (1.02 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+	State 13
+	State 14
+	State 15
+	State 16
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

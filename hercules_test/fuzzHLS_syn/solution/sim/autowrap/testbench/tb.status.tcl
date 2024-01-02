@@ -1,0 +1,1 @@
+set ::AESL_AUTOSIM::gTopFileName /home/jackie/RISC-V_Research/fuzzHLS/hercules_test/fuzzHLS_syn/solution/./sim/autowrap/testbench/fuzzHLS.c_pre.c.tb.c
