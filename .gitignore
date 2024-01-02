@@ -1,8 +1,8 @@
-/build/**
+/build
 
-/fail_hls/**
+/fail_hls
 
-/hercules_hls/**
+/hercules_hls
 
-/success_hls/**
+/success_hls
 
