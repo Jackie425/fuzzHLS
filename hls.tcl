@@ -10,7 +10,7 @@ set_part xczu19eg-ffvc1760-2-i
 create_clock -period 10
 #csim_design
 csynth_design
-#cosim_design -rtl verilog -trace_level none
+cosim_design -rtl verilog -trace_level none
 
 exit
 

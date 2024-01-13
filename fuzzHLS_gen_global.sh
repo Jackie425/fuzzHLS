@@ -54,6 +54,9 @@ echo "start_line = $start_line"
 end_line=$(awk -v start=$start_line 'NR>start && $0=="" {print NR; exit}' $fuzz_c)
 echo "end_line = $end_line"
 
+func1_def=$(sed -n "$((start_line+1))p" ./$fuzz_c)
+echo "func1_def = $func1_def"
+
 for ((i=start_line+2; i<end_line; i++)); do
     # 获取去掉";"后的内容
     template=$(sed -n "${i}p" $fuzz_c | tr -d ';')
@@ -147,7 +150,7 @@ done < <(echo "$content" | awk '{for(i=1;i<=NF;i++) if(substr($i,1,2) == "g_") {
 echo "var_print = $var_print"
 
 # 创建新的main.c文件
-echo -e "#include <stdio.h>\n#include <stdint.h>\n\nint main (void){\n    int i, j, k;\n$content\n    printf(\"return %X\\\\n\", func_1($vars_name));\n$var_print\n    return 0;\n}" > main.c
+echo -e "#include <stdio.h>\n#include <stdint.h>\n\n$func1_def\n\nint main (void){\n    int i, j, k;\n$content\n    printf(\"return %X\\\\n\", func_1($vars_name));\n$var_print\n    return 0;\n}" > main.c
 
 # 替换为向file中打印字符串
 var_print=${var_print//printf(/fprintf(file, }

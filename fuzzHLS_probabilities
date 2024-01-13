@@ -10,7 +10,7 @@ scalar_field_in_full_bitfields_struct_prob=0
 
 exhaustive_bitfield_prob=10
 
-safe_ops_signed_prob=0
+safe_ops_signed_prob=30
 
 select_deref_pointer_prob=0
 
