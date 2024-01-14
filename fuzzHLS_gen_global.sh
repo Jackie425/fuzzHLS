@@ -150,7 +150,19 @@ done < <(echo "$content" | awk '{for(i=1;i<=NF;i++) if(substr($i,1,2) == "g_") {
 echo "var_print = $var_print"
 
 # 创建新的main.c文件
-echo -e "#include <stdio.h>\n#include <stdint.h>\n\n$func1_def\n\nint main (void){\n    int i, j, k;\n$content\n    printf(\"return %X\\\\n\", func_1($vars_name));\n$var_print\n    return 0;\n}" > main.c
+echo -e "
+#include <stdio.h>
+#include <stdint.h>
+
+$func1_def
+
+int main (void){
+    int i, j, k;
+    $content
+    printf(\"return %X\\\\n\", func_1($vars_name));
+    $var_print
+    return 0;
+}" > main.c
 
 # 替换为向file中打印字符串
 var_print=${var_print//printf(/fprintf(file, }
